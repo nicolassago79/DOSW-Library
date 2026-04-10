@@ -28,7 +28,11 @@
 * Documentación de API integrada.
 
 
+## Diagrama de contexto
 
+El sistema se compone de dos módulos principales: la Plataforma, que gestiona la interacción con el usuario, y el Core, que procesa la lógica interna. Ambos interactúan con una Base de Datos externa para la persistencia de la información.
+
+![Diagrama de contexto.png](imagenes/Diagrama%20de%20contexto.png)
 
 ## Diagrama general
 
@@ -51,7 +55,7 @@ El diagrama de clases centra su lógica en la entidad Loan, la cual vincula a Us
 
 ## Diagrama especifico
 
-![img_1.png](img_1.png)
+![Diagrama Especifico.png](imagenes/Diagrama%20Especifico.png)
 
 
 El diagrama organiza la lógica del sistema en una arquitectura de capas: los Mappers transforman los datos de entrada para los Controladores, quienes delegan el procesamiento a los Services. Finalmente, los servicios emplean Validators para garantizar el cumplimiento de las reglas de negocio antes de procesar la información.
@@ -59,3 +63,22 @@ El diagrama organiza la lógica del sistema en una arquitectura de capas: los Ma
 Flujo lógico: Mappers ➔ Controladores ➔ Services ➔ Validators.
 
 
+## Diagrama Entidad-Relacion
+
+El modelo ER  estructura la base de datos mediante la tabla Loan, que actúa como entidad asociativa central. A través de llaves foráneas, conecta las tablas User y Book en relaciones de uno a muchos ($1:N$), permitiendo la trazabilidad de múltiples solicitudes por usuario e ingresos históricos por cada ejemplar.
+
+![Diagrama Entidad-Relacion.png](imagenes/Diagrama%20Entidad-Relacion.png)
+
+## Diagrama No Relacional
+
+Este diagrama detalla un modelo de datos NoSQL basado en documentos, diseñado para optimizar el rendimiento mediante desnormalización.
+
+Entidades Core: User y Book actúan como los documentos maestros que proveen datos al resto del sistema.
+
+Datos Embebidos: Se utilizan relaciones de inclusión (punteadas) hacia metaData y Disponibilidad para agilizar las consultas sin realizar cruces complejos.
+
+Gestión de Préstamos: La entidad Loan centraliza la operación, vinculando a los usuarios con los libros.
+
+Histórico: LoanHistory almacena de forma embebida los registros de préstamos, garantizando la trazabilidad histórica de cada transacción.
+
+![Diagrama No Relacional.png](imagenes/Diagrama%20No%20Relacional.png)
