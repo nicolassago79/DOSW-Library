@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: DOSW-Library
+  main:
+    allow-bean-definition-overriding: true
+
+  # --- CONFIGURACIÓN DE PERSISTENCIA (MONGODB) ---
+  data:
+    mongodb:
+      uri: mongodb+srv://nicolassago10_db_user:ACnJHCiZQ8ZXYafc@cluster0.eha6ja0.mongodb.net/?appName=Cluster0
+
+  # Desactivamos el autoconfigure de SQL para evitar errores de carga
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+  # --- CONFIGURACIÓN RELACIONAL (INACTIVA) ---
+  # datasource:
+  #   url: jdbc:postgresql://localhost:5432/library_db
+  #   username: db_user
+  #   password: abc123
+  #   driver-class-name: org.postgresql.Driver
+
+  # jpa:
+  #   database-platform: org.hibernate.dialect.PostgreSQLDialect
+  #   hibernate:
+  #     ddl-auto: update
+  #   show-sql: true
+  #   properties:
+  #     hibernate:
+  #       format_sql: true
+
+# --- DOCUMENTACIÓN SWAGGER ---
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+# --- PUERTO DEL SERVIDOR ---
+server:
+  port: 8080
